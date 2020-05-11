@@ -11,7 +11,7 @@ export class Routes extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link to="/home">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/profile">Profile</Link>
@@ -25,7 +25,7 @@ export class Routes extends React.Component {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/home" exact component={Home} />
+          <Route path="/" exact component={Home} />
           <Route path="/profile" render={(props) => <Profile {...props} />} />
           <Route path="/add-post">
             <AddPost />

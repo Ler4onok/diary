@@ -1,0 +1,10 @@
+.postsWrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post {
+  background: #E8E8E8;
+  margin: 5px;
+  padding: 15px;
+}
