@@ -1,10 +1,105 @@
-.postsWrapper{
+@font-face {
+  font-family: "August";
+  src: url("../../assets/August.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/August.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "Muli-ExtraBold";
+  src: url("../../assets/Muli-ExtraBold.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/Muli-ExtraBold.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "Muli-Light";
+  src: url("../../assets/Muli-Light.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/Muli-Light.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+body {
+  background: #f0f0f0;
+}
+
+ul.homeHeader{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  color: white;
+  font-family: 'Muli-Light';
+  list-style: none;
+  justify-content: space-between;
+}
+
+li.homeHeaderElement{
+  margin: 10px;
+}
+
+header.homeHeader {
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  width: 1013px;
+  background: #000000 url("../../assets/background.jpg") 91% 94%;
+}
+
+h2.postTitle {
+  margin: 0;
+  font-family: "Muli-ExtraBold";
+  font-size: 24px;
+}
+
+.postsWrapper {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .post {
-  background: #E8E8E8;
-  margin: 5px;
+  font-size: 15px;
+  background: white;
+  font-family: "Muli-Light";
+  margin: 0.5%;
   padding: 15px;
+  width: 28%;
+  height: auto;
+  max-height: 200px;
+  overflow: auto;
+  border-radius: 5px;
+  filter: drop-shadow(-2px 2px 2px grey);
+}
+
+.showMoreButton {
+  font-family: "Muli-Light";
+  border: none;
+  /* flex: 1 1 auto; */
+  margin: 10px;
+  padding: 17px;
+  width: 16%;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to right,
+    #232526 0%,
+    #414345 51%,
+    #232526 100%
+  );
+}
+
+.showMoreButton:hover {
+  background-position: right center;
+}
+
+.showMoreButtonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

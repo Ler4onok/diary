@@ -13,18 +13,26 @@ export class Home extends React.Component {
   render() {
     return (
       <div>
+        <header className='homeHeader'>
+          <ul className='homeHeader'>
+            <li className='homeHeaderElement'>Home</li>
+            <li className='homeHeaderElement'>Profile</li>
+          </ul>
+        </header>
         <div className="postsWrapper">
-          {this.state.posts.map((post) => {
+          {this.state.posts.map((post, index) => {
             return (
-              <div className="post">
-                <h2>{post.title}</h2>
+              <div key={index} className="post">
+                <h2 className='postTitle'>{post.title}</h2>
                 <p>{post.text}</p>
-                <div>{post.author}</div>
+                <div className='postAuthor'>{post.author}</div>
               </div>
             );
           })}
         </div>
-				<button>Show More</button>
+        <div className='showMoreButtonWrapper'>
+        <button className='showMoreButton'>Show More</button>
+        </div>
       </div>
     );
   }
