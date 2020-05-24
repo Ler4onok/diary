@@ -20,7 +20,7 @@ export class AddPost extends React.Component {
     this.setState({ post: { ...this.state.post, text: event.target.value } });
   };
 
-  handlePublishPostRequest = async () => {
+  handlePublishPostRequest = async () => {  
     const { history } = this.props;
     try {
       await publishPost(this.state.post);

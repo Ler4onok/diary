@@ -5,7 +5,49 @@
       url("../../assets/Muli-Light.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
-.testButton {
+@font-face {
+  font-family: "Muli-ExtraLight";
+  src: url("../../assets/Muli-ExtraLight.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/Muli-ExtraLight.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "August";
+  src: url("../../assets/August.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/August.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "Muli-ExtraBold";
+  src: url("../../assets/Muli-ExtraBold.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/Muli-ExtraBold.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+.profilePage {
+  background: url("../../assets/profile.jpg") round;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-family: "Muli-ExtraLight";
+}
+
+.profileHeader {
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.profileHomeButton {
+  color: white;
+  font-family: "Muli-ExtraLight";
+}
+
+.addPostButton {
   text-align: center;
   margin-top: 5%;
 }
@@ -22,7 +64,7 @@
   width: 35px;
   height: 35px;
   border: none;
-  background: #00d1d4c4;
+  background: #009688ba;
   border-radius: 25px;
   overflow: hidden;
   position: relative;
@@ -37,7 +79,7 @@
   content: "";
   position: absolute;
   height: 1px;
-  width: 10px;
+  width: 8px;
   top: calc(50% - 1px);
   background: white;
 }
@@ -72,9 +114,9 @@
   transition: all 0.2s ease-in-out;
   content: "";
   position: absolute;
-  height: 20px;
+  height: 17px;
   width: 1px;
-  top: calc(50% - 10px);
+  top: calc(50% - 9px);
   background: white;
   overflow: hidden;
 }
@@ -97,4 +139,43 @@
   right: 15px;
   height: 4px;
   top: calc(50% - 2px);
+}
+
+.profileFeedWrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.profileFeed {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileImg {
+  content: url(/static/media/avatar.ff8114db.jpg);
+  width: 25%;
+  height: 70%;
+  border-radius: 100px;
+}
+
+.profileUserName {
+  font-family: "Muli-ExtraBold";
+  font-size: 31px;
+}
+
+.profilePosts {
+  width: 100%;
+  height: 100%;
+  background: #00000080;
+  margin-top: 50px;
+  border-radius: 8px;
 }

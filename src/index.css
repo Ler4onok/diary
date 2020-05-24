@@ -1,3 +1,31 @@
+@font-face {
+  font-family: "Muli-Light";
+  src: url("./assets/Muli-Light.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("./assets/Muli-Light.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "Muli-ExtraLight";
+  src: url("./assets/Muli-ExtraLight.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("./assets/Muli-ExtraLight.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "August";
+  src: url("./assets/August.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("./assets/August.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: "Muli-ExtraBold";
+  src: url("./assets/Muli-ExtraBold.ttf") format("ttf"),
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("./assets/Muli-ExtraBold.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
 * {
   box-sizing: border-box;
 }
