@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { publishPost } from "../../api";
 import { getCookie } from "../../helpers/cookies";
 import { ReactComponent as Lock } from "../../assets/lock.svg";
-import unlock from "../../assets/unlock.svg";
+// import unlock from "../../assets/unlock.svg";
 import addImage from "../../assets/add-image.png";
 import jsonwebtoken from "jsonwebtoken";
 
@@ -92,7 +92,7 @@ export class AddPost extends React.Component {
           ></textarea>
           <div className="addPostBottomSection">
             <div className="addPostOptionsWrapper">
-              <div>
+              <div title="add image">
                 <img
                   className="addPostAddImage"
                   src={addImage}
@@ -100,6 +100,7 @@ export class AddPost extends React.Component {
                 />
               </div>
               <div
+                title="make private"
                 className="addPostLockWrapper"
                 style={{ backgroundColor: this.state.lockColor }}
                 onClick={this.handleLock}

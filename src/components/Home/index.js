@@ -25,7 +25,7 @@ export class Home extends React.Component {
     const token = getCookie("token");
     this.setState({ isAuthorized: !token ? false : true, posts });
     if (token) {
-      const username = jsonwebtoken.decode(token).username;
+      const { username = "" } = jsonwebtoken.decode(token) || {};
       this.setState({ username });
     }
   }

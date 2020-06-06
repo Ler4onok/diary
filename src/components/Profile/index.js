@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
-import { getUserData } from "../../api";
+import { getUserData, deletePost } from "../../api";
 import { getCookie } from "../../helpers/cookies";
 import moment from "moment";
 import addProfileImg from "../../assets/addProfileImg.png";
+import { ReactComponent as DeletePost } from "../../assets/deletePost.svg";
 
 export class Profile extends React.Component {
   state = {
-    data: {
-      posts: [],
-      profile: {
-        username: "",
-        bio: "",
-        profileImage: null,
-      },
+    posts: [],
+    profile: {
+      username: "",
+      bio: "",
+      profileImage: null,
     },
   };
 
@@ -25,8 +24,8 @@ export class Profile extends React.Component {
     try {
       const token = getCookie("token");
       const username = this.props.match.params.username;
-      const data = await getUserData(token, username);
-      this.setState({ data });
+      const { posts, profile } = await getUserData(token, username);
+      this.setState({ posts, profile });
     } catch (error) {
       console.log({ error });
     }
@@ -39,15 +38,14 @@ export class Profile extends React.Component {
 
     reader.onload = (event) => {
       this.setState({
-        data: {
-          ...this.state.data,
-          profile: { ...this.state.profile, profileImage: event.target.result },
-        },
+        ...this.state,
+        profile: { ...this.state.profile, profileImage: event.target.result },
       });
     };
   };
+
   render() {
-    console.log(this.state.data);
+    console.log(this.state);
     return (
       <>
         <div className="profilePage">
@@ -55,7 +53,7 @@ export class Profile extends React.Component {
             <Link to="/" className="profileHomeButton">
               Home
             </Link>
-            <Link to="/settings">Go to settings </Link>
+            {/* <Link to="/settings">Go to settings </Link> */}
             <Link to="/add-post" className="profileAddPostButton">
               <div className="addPostButon">
                 <button className="icon-btn add-btn">
@@ -69,13 +67,14 @@ export class Profile extends React.Component {
             <section className="profileFeed">
               <div className="profileInfo">
                 <label
+                  title="upload new image"
                   htmlFor="profileUpload"
                   className="profileImg"
                   style={
-                    this.state.data.profile.profileImage == null
+                    this.state.profile.profileImage == null
                       ? { content: `url(${addProfileImg})` }
                       : {
-                          content: `url(${this.state.data.profile.profileImage})`,
+                          content: `url(${this.state.profile.profileImage})`,
                         }
                   }
                 >
@@ -89,12 +88,13 @@ export class Profile extends React.Component {
                   }}
                 />
                 <div className="profileUserName">
-                  {this.state.data.profile.username}
+                  {this.state.profile.username}
                 </div>
                 <div className="profileUserBio">Say no to good manners</div>
               </div>
               <div className="profilePosts">
-                {this.state.data.posts.map((post) => {
+                {this.state.posts.map((post) => {
+                  console.log(post);
                   return (
                     <div className="userPost">
                       <div className="userPostTitle">{post.title}</div>
@@ -105,7 +105,14 @@ export class Profile extends React.Component {
                           <div className="userPostCreatedAt">
                             {moment(post.created_at).startOf("day").fromNow()}
                           </div>
-                          <div className="userPostSettings">...</div>
+                          <div className="userPostSettings">
+                            <DeletePost
+                              onClick={() => {
+                                const token = getCookie("token");
+                                deletePost(token, post.id);
+                              }}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>

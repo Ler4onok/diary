@@ -54,6 +54,19 @@ export const publishPost = async (token, post) => {
   }
 };
 
+export const deletePost = async (token, id) => {
+  try {
+    const deleteRequest = await request(
+      `http://localhost:8000/post/${id}`,
+      "DELETE",
+      undefined,
+      token
+    );
+  } catch (error) {
+    return error;
+  }
+};
+
 export const signIn = async (username, password) => {
   try {
     const user = { username, password };

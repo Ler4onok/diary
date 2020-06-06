@@ -216,3 +216,9 @@
 #profileUpload {
   display: none;
 }
+
+@media screen and (max-width: 800px) {
+  .profileFeed {
+    width: 100%;
+  }
+}

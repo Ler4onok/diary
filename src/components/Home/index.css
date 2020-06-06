@@ -142,3 +142,9 @@ h2.postTitle {
   width: 100%;
   height: 100%;
 }
+
+@media screen and (max-width: 420px) {
+  .postsWrapper {
+    column-count: 1;
+  }
+}
