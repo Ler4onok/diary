@@ -79,6 +79,36 @@
   /* filter: drop-shadow(-2px 2px 2px black); */
 }
 
+.addPostBottomSection {
+  display: flex;
+  width: 100%;
+}
+
+.addPostOptionsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 14%; */
+}
+
+.addPostAddImage {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.addPostIsPrivate {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.addPostLockWrapper {
+  width: 36%;
+  border-radius: 35px;
+  /* background: #07746b; */
+}
+
 .addPostButtonWrapper {
   width: 100%;
   display: flex;

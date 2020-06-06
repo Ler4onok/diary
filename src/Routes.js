@@ -12,7 +12,7 @@ export class Routes extends React.Component {
       <Switch>
         <Route path="/" exact component={Home} />
         <ProtectedRoute path="/settings" exact component={Settings} />
-        <ProtectedRoute path="/profile" component={Profile} exact />
+        <Route path="/profile/:username" component={Profile} exact />
         <ProtectedRoute path="/add-post" component={AddPost} exact />
       </Switch>
     );

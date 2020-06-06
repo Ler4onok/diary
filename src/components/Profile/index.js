@@ -1,9 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { getUserData } from "../../api";
+import { getCookie } from "../../helpers/cookies";
+import moment from "moment";
+import addProfileImg from "../../assets/addProfileImg.png";
 
 export class Profile extends React.Component {
+  state = {
+    data: {
+      posts: [],
+      profile: {
+        username: "",
+        bio: "",
+        profileImage: null,
+      },
+    },
+  };
+
+  componentDidMount() {
+    this.getData();
+  }
+  getData = async () => {
+    try {
+      const token = getCookie("token");
+      const username = this.props.match.params.username;
+      const data = await getUserData(token, username);
+      this.setState({ data });
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  changeProfileImg = (event) => {
+    const files = event.target.files;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+
+    reader.onload = (event) => {
+      this.setState({
+        data: {
+          ...this.state.data,
+          profile: { ...this.state.profile, profileImage: event.target.result },
+        },
+      });
+    };
+  };
   render() {
+    console.log(this.state.data);
     return (
       <>
         <div className="profilePage">
@@ -22,56 +66,53 @@ export class Profile extends React.Component {
             </Link>
           </div>
           <div className="profileFeedWrapper">
-            <div className="profileFeed">
+            <section className="profileFeed">
               <div className="profileInfo">
-                <img className="profileImg" />
-                <div className="profileUserName">Lora</div>
+                <label
+                  htmlFor="profileUpload"
+                  className="profileImg"
+                  style={
+                    this.state.data.profile.profileImage == null
+                      ? { content: `url(${addProfileImg})` }
+                      : {
+                          content: `url(${this.state.data.profile.profileImage})`,
+                        }
+                  }
+                >
+                  Upload
+                </label>
+                <input
+                  id="profileUpload"
+                  type="file"
+                  onChange={(event) => {
+                    this.changeProfileImg(event);
+                  }}
+                />
+                <div className="profileUserName">
+                  {this.state.data.profile.username}
+                </div>
                 <div className="profileUserBio">Say no to good manners</div>
               </div>
               <div className="profilePosts">
-                Satellite data gathered between 2017 and 2019, combined with
-                on-the-ground measurements over two summers in Antarctica,
-                allowed scientists to map the microscopic algae as they bloomed
-                across the snow of the Antarctic Peninsula. Warming temperatures
-                could create more "habitable" environments for the algae, which
-                need wet snow to grow in, researchers told CNN. Green snow alga
-                is microscopic when measured individually, but when the
-                organisms grow simultaneously, they turn the snow bright green,
-                and can even be spotted from space, researchers said in a study
-                published in the Nature Communications journal on
-                Wednesday.Satellite data gathered between 2017 and 2019,
-                combined with on-the-ground measurements over two summers in
-                Antarctica, allowed scientists to map the microscopic algae as
-                they bloomed across the snow of the Antarctic Peninsula. Warming
-                temperatures could create more "habitable" environments for the
-                algae, which need wet snow to grow in, researchers told CNN.
-                Green snow alga is microscopic when measured individually, but
-                when the organisms grow simultaneously, they turn the snow
-                bright green, and can even be spotted from space, researchers
-                said in a study published in the Nature Communications journal
-                on Wednesday.Satellite data gathered between 2017 and 2019,
-                combined with on-the-ground measurements over two summers in
-                Antarctica, allowed scientists to map the microscopic algae as
-                they bloomed across the snow of the Antarctic Peninsula. Warming
-                temperatures could create more "habitable" environments for the
-                algae, which need wet snow to grow in, researchers told CNN.
-                Green snow alga is microscopic when measured individually, but
-                when the organisms grow simultaneously, they turn the snow
-                bright green, and can even be spotted from space, researchers
-                said in a study published in the Nature Communications journal
-                on Wednesday.Satellite data gathered between 2017 and 2019,
-                combined with on-the-ground measurements over two summers in
-                Antarctica, allowed scientists to map the microscopic algae as
-                they bloomed across the snow of the Antarctic Peninsula. Warming
-                temperatures could create more "habitable" environments for the
-                algae, which need wet snow to grow in, researchers told CNN.
-                Green snow alga is microscopic when measured individually, but
-                when the organisms grow simultaneously, they turn the snow
-                bright green, and can even be spotted from space, researchers
-                said in a study published in the Nature Communications journal
-                on Wednesday.
+                {this.state.data.posts.map((post) => {
+                  return (
+                    <div className="userPost">
+                      <div className="userPostTitle">{post.title}</div>
+                      <div className="userPostText">{post.text}</div>
+                      <div className="userPostBottomWrapper">
+                        <div className="userPostLikes">Likes</div>
+                        <div className="userPostBottomSection">
+                          <div className="userPostCreatedAt">
+                            {moment(post.created_at).startOf("day").fromNow()}
+                          </div>
+                          <div className="userPostSettings">...</div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </>

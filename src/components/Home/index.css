@@ -82,10 +82,8 @@ h2.postTitle {
 .postsWrapper {
   width: 100%;
   padding: 35px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
+  column-count: 3;
+  column-gap: 1em;
 }
 
 .post {
@@ -94,13 +92,14 @@ h2.postTitle {
   font-family: "Muli-Light";
   margin: 0.5%;
   padding: 15px;
-  width: 28%;
   height: auto;
   max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 5px;
   filter: drop-shadow(-2px 2px 2px grey);
+  display: inline-block;
+  width: 100%;
 }
 
 .postImage {
@@ -116,7 +115,7 @@ h2.postTitle {
   width: 15%;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.5s;
+  -webkit-transition: 0.5s;
   background-size: 200% auto;
   color: white;
   box-shadow: 0 0 20px #eee;
