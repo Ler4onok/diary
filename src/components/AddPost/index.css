@@ -127,10 +127,20 @@
   background-size: 200% auto;
   color: white;
   border-radius: 3px;
-  background: #009688ba;
+  /* background: #009688ba; */
+  background-image: linear-gradient(
+    to right,
+    #02aab0 0%,
+    #00cdac 51%,
+    #02aab0 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.addPostPublishButton:hover {
+  background-position: right center;
 }
 
 .addPostCancelButton {

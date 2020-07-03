@@ -37,6 +37,7 @@ export class AddPost extends React.Component {
       const token = getCookie("token");
       await publishPost(token, this.state.post);
       // const username = jsonwebtoken.decode(token).username;
+      localStorage.removeItem("posts");
       history.push(`/profile/${this.state.username}`);
     } catch (error) {
       console.log(error);
@@ -76,7 +77,6 @@ export class AddPost extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="addPostPage">
         <div className="addPostWrapper">

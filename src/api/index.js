@@ -20,7 +20,7 @@ const request = async (endpoint, method = "GET", body = undefined, token) => {
 
 export const getPosts = async () => {
   try {
-    const posts = await request("http://localhost:8000/post/list");
+    const posts = await request("https://api-diary.herokuapp.com/post/list");
     return posts;
   } catch (error) {
     return error;
@@ -30,7 +30,7 @@ export const getPosts = async () => {
 export const getUserData = async (token, username) => {
   try {
     const userData = await request(
-      `http://localhost:8000/user/data/${username}`,
+      `https://api-diary.herokuapp.com/user/data/${username}`,
       "GET",
       undefined,
       token
@@ -44,7 +44,7 @@ export const getUserData = async (token, username) => {
 export const publishPost = async (token, post) => {
   try {
     const postRequest = await request(
-      "http://localhost:8000/post/add",
+      "https://api-diary.herokuapp.com/post/add",
       "POST",
       post,
       token
@@ -57,7 +57,7 @@ export const publishPost = async (token, post) => {
 export const deletePost = async (token, id) => {
   try {
     const deleteRequest = await request(
-      `http://localhost:8000/post/${id}`,
+      `https://api-diary.herokuapp.com/post/${id}`,
       "DELETE",
       undefined,
       token
@@ -71,7 +71,7 @@ export const signIn = async (username, password) => {
   try {
     const user = { username, password };
     const signInRequest = await request(
-      "http://localhost:8000/auth/signin",
+      "https://api-diary.herokuapp.com/auth/signin",
       "POST",
       user
     );

@@ -222,3 +222,7 @@
     width: 100%;
   }
 }
+
+.deletePostSvg:hover {
+  fill: rgb(212, 46, 46);
+}

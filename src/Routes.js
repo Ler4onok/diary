@@ -10,7 +10,7 @@ export class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/diary" exact component={Home} />
         <ProtectedRoute path="/settings" exact component={Settings} />
         <Route path="/profile/:username" component={Profile} exact />
         <ProtectedRoute path="/add-post" component={AddPost} exact />

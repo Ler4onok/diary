@@ -6,6 +6,7 @@ import { getCookie } from "../../helpers/cookies";
 import moment from "moment";
 import addProfileImg from "../../assets/addProfileImg.png";
 import { ReactComponent as DeletePost } from "../../assets/deletePost.svg";
+import jsonwebtoken from "jsonwebtoken";
 
 export class Profile extends React.Component {
   state = {
@@ -15,6 +16,7 @@ export class Profile extends React.Component {
       bio: "",
       profileImage: null,
     },
+    isAuthorized: false,
   };
 
   componentDidMount() {
@@ -23,9 +25,28 @@ export class Profile extends React.Component {
   getData = async () => {
     try {
       const token = getCookie("token");
+
       const username = this.props.match.params.username;
       const { posts, profile } = await getUserData(token, username);
-      this.setState({ posts, profile });
+      const { username: authUsername } = jsonwebtoken.decode(token) || {};
+      this.setState({
+        posts,
+        profile,
+        isAuthorized: authUsername === username,
+      });
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  onDeletePost = async (postId) => {
+    try {
+      const token = getCookie("token");
+      await deletePost(token, postId);
+      localStorage.removeItem("posts");
+      this.setState({
+        posts: this.state.posts.filter((post) => post.id !== postId),
+      });
     } catch (error) {
       console.log({ error });
     }
@@ -45,15 +66,14 @@ export class Profile extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    const { isAuthorized } = this.state;
     return (
       <>
         <div className="profilePage">
           <div className="profileHeader">
-            <Link to="/" className="profileHomeButton">
+            <Link to="/diary" className="profileHomeButton">
               Home
             </Link>
-            {/* <Link to="/settings">Go to settings </Link> */}
             <Link to="/add-post" className="profileAddPostButton">
               <div className="addPostButon">
                 <button className="icon-btn add-btn">
@@ -94,9 +114,8 @@ export class Profile extends React.Component {
               </div>
               <div className="profilePosts">
                 {this.state.posts.map((post) => {
-                  console.log(post);
                   return (
-                    <div className="userPost">
+                    <div className="userPost" key={post.id}>
                       <div className="userPostTitle">{post.title}</div>
                       <div className="userPostText">{post.text}</div>
                       <div className="userPostBottomWrapper">
@@ -106,12 +125,12 @@ export class Profile extends React.Component {
                             {moment(post.created_at).startOf("day").fromNow()}
                           </div>
                           <div className="userPostSettings">
-                            <DeletePost
-                              onClick={() => {
-                                const token = getCookie("token");
-                                deletePost(token, post.id);
-                              }}
-                            />
+                            {isAuthorized && (
+                              <DeletePost
+                                className="deletePostSvg"
+                                onClick={() => this.onDeletePost(post.id)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
